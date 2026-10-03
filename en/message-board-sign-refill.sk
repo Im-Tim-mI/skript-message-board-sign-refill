@@ -1,0 +1,22 @@
+# ------------------------------------------------------------
+#  skript-message-board-sign-refill (English edition)
+#  https://github.com/Im-Tim-mI/skript-message-board-sign-refill
+#  Copyright (c) 2026 廷廷小教室、廷廷的家（Tim945）
+#  License: MIT + Commons Clause (see LICENSE)
+# ------------------------------------------------------------
+
+# Check and refill automatically every 60 seconds
+every 60 seconds:
+    # Chest coordinates and world name (make sure your world is really called "world")
+    set {_loc} to location(-982, 77, -1177, world "world")
+
+    # Only continue if the block there is a chest or a barrel
+    if block at {_loc} is a chest or barrel:
+
+        # Go through every slot (a double chest has at most 54 slots)
+        loop 54 times:
+            set {_slot} to loop-number - 1
+
+            # If the slot is empty (air), put a stack of 16 oak signs into it
+            if slot {_slot} of block at {_loc} is air:
+                set slot {_slot} of block at {_loc} to 16 oak sign
